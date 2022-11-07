@@ -12,4 +12,10 @@ public class Testing {
 		assertNotNull(figurita);
 	}
 
+	@Test
+	public void queSePuedaCrearUnAdministrador() {
+		Usuario administrador = new Administrador();
+		assertNotNull(administrador);
+	}
+	
 }
