@@ -1,29 +1,36 @@
 package unlam.edu.ar.pb2;
 
-import java.lang.reflect.Array;
+import java.util.LinkedList;
 import java.util.TreeSet;
 
 public class Administrador extends Usuario {
 
-	@Override
-	public void agregarFigurita(Figurita figurita) {
-		try {
-			this.buscarCodigo(figurita);
-		} catch (CodigoExistente e) {
-			e.getMessage();
-		}
-		this.getFiguritasAgregadas().add(figurita);
+	TreeSet <Figurita> figuritasAgregadas; 
+	
+	public Administrador () {
+		this.figuritasAgregadas = new TreeSet<Figurita>(new OrdernarFiguritas());
 	}
 	
 	@Override
+	public void agregarFigurita(Figurita figurita) throws CodigoExistente {
+		this.buscarCodigo(figurita);
+		this.getFiguritasAgregadas().add(figurita);
+	}
+	
 	public void buscarCodigo(Figurita figurita) throws CodigoExistente {
 		for(Figurita figurita1 : this.getFiguritasAgregadas()){
-			if(figurita1.getCodigo().equals(figurita.getCodigo())){
+			if(figurita1.getCodigo().compareTo(figurita.getCodigo()) == 0){
 				throw new CodigoExistente("El codigo ya existe");
 			}
 		}
 	}
-
 	
+	public TreeSet <Figurita> getFiguritasAgregadas() {
+		return this.figuritasAgregadas;
+	}
+	
+	public void setFiguritasAgregadas(TreeSet<Figurita> figuritasAgregadas) {
+		this.figuritasAgregadas = figuritasAgregadas;
+	}
 
 }

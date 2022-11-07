@@ -1,6 +1,6 @@
 package unlam.edu.ar.pb2;
 
-public class Figurita {
+public class Figurita implements Comparable<Figurita>{
 
 	private String codigo;
 	private String grupo;
@@ -66,5 +66,26 @@ public class Figurita {
 	public void setValor(Integer valor) {
 		this.valor = valor;
 	}
+	
+	@Override
+	public int compareTo(Figurita o) {
+		if (o.getGrupo().compareTo(this.getGrupo()) == 0) {
+			if (o.getSeleccion().compareTo(this.getSeleccion()) == 0) {
+				return o.getNumero().compareTo(this.getNumero());
+			}
+			return o.getSeleccion().compareTo(this.getSeleccion());
+		}
+		return o.getGrupo().compareTo(this.getGrupo());
+	}
+
+	@Override
+	public String toString() {
+		return "Figurita [codigo=" + codigo + ", grupo=" + grupo + ", seleccion=" + seleccion + ", nombre=" + nombre
+				+ ", valor=" + valor + ", numero=" + numero + "]";
+	}
+
+
+	
+	
 
 }
