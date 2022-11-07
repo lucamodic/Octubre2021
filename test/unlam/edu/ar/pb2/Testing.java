@@ -59,4 +59,14 @@ public class Testing {
 		assertEquals(figuritas, administrador.getFiguritasAgregadas());
 	}
 	
+	@Test 
+	public void queUnAdministradorNoPuedaAgregarUnaFiguritaExistente() {
+		Usuario administrador = new Administrador();
+		Figurita figurita = new Figurita("C", "Argentina", "Lionel Andres Messi", 100000, 10);
+		administrador.agregarFigurita(figurita);
+		administrador.agregarFigurita(figurita);
+		assertEquals(1, administrador.getFiguritasAgregadas().size());
+
+	}
+	
 }
