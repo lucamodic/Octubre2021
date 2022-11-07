@@ -130,7 +130,6 @@ public class Testing {
 	public void queNoSePuedaIntercambiarUnaFiguritaDeUnUsuarioQueNoLaTenga() throws NoTieneLaFigurita {
 		UsuarioFinal usuarioFinal = new UsuarioFinal();
 		Figurita figurita = new Figurita("C", "Argentina", "Lionel Andres Messi", 100000, 10);
-		usuarioFinal.agregarFigurita(figurita);
 		
 		UsuarioFinal usuarioFinal2 = new UsuarioFinal();
 		Figurita figurita2 = new Figurita("C", "Argentina", "El dibu", 100000, 1);
@@ -142,6 +141,23 @@ public class Testing {
 
 	}
 	
+	
+	@Test (expected = NoTieneLaFigurita.class)
+	public void queNoSePuedaIntercambiarUnaFiguritaDeUnUsuarioQueYaLaHayaPegado() throws NoTieneLaFigurita, FiguritaRepetida {
+		UsuarioFinal usuarioFinal = new UsuarioFinal();
+		Figurita figurita = new Figurita("C", "Argentina", "Lionel Andres Messi", 100000, 10);
+		usuarioFinal.agregarFigurita(figurita);
+		usuarioFinal.pegarFigurita(figurita);
+		
+		UsuarioFinal usuarioFinal2 = new UsuarioFinal();
+		Figurita figurita2 = new Figurita("C", "Argentina", "El dibu", 100000, 1);
+		usuarioFinal2.agregarFigurita(figurita2);
+		
+		usuarioFinal.intercambio(figurita2, usuarioFinal2, figurita2);
+		
+		assertEquals(figurita, usuarioFinal2.getFiguritas().get(0));
+
+	}
 }
 
 
