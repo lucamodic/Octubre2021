@@ -1,11 +1,10 @@
 package unlam.edu.ar.pb2;
 
-import java.util.LinkedList;
 import java.util.TreeSet;
 
 public class Administrador extends Usuario {
 
-	TreeSet <Figurita> figuritasAgregadas; 
+	private TreeSet <Figurita> figuritasAgregadas; 
 	
 	public Administrador () {
 		this.figuritasAgregadas = new TreeSet<Figurita>(new OrdernarFiguritas());
@@ -14,7 +13,7 @@ public class Administrador extends Usuario {
 	@Override
 	public void agregarFigurita(Figurita figurita) throws CodigoExistente {
 		this.buscarCodigo(figurita);
-		this.getFiguritasAgregadas().add(figurita);
+		this.figuritasAgregadas.add(figurita);
 	}
 	
 	public void buscarCodigo(Figurita figurita) throws CodigoExistente {

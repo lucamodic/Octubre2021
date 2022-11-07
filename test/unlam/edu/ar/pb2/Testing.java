@@ -65,12 +65,7 @@ public class Testing {
 		LinkedList <Figurita> figuritass = new LinkedList<Figurita>();
 		figuritass.add(figurita2);
 		figuritass.add(figurita);
-		figuritass.add(figurita1);
-		for(Figurita figuritasss : usuarioFinal.getFiguritas()) {
-			System.out.println(figuritasss.toString());
-		}
-		
-		
+		figuritass.add(figurita1);	
 		assertEquals(figuritass, usuarioFinal.getFiguritas());
 
 	}
@@ -92,7 +87,14 @@ public class Testing {
 		usuarioFinal.agregarFigurita(figurita);
 		usuarioFinal.agregarFigurita(figurita);
 		assertEquals(2, usuarioFinal.getFiguritas().size());
-
+	}
+	
+	@Test
+	public void queUnUsuarioFinalPuedaPegarUnaFigurita() {
+		UsuarioFinal usuarioFinal = new UsuarioFinal();
+		Figurita figurita = new Figurita("C", "Argentina", "Lionel Andres Messi", 100000, 10);
+		usuarioFinal.pegarFigurita(figurita);
+		assertEquals(1, usuarioFinal.getFiguritasPegadas().size());
 	}
 	
 }
