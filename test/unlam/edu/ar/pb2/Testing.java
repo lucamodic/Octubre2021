@@ -96,5 +96,18 @@ public class Testing {
 		usuarioFinal.pegarFigurita(figurita);
 		assertEquals(1, usuarioFinal.getFiguritasPegadas().size());
 	}
+
+	@Test 
+	public void queUnUsuarioFinalNoPuedaPegarUnaFiguritaRepetida() {
+		UsuarioFinal usuarioFinal = new UsuarioFinal();
+		Figurita figurita = new Figurita("C", "Argentina", "Lionel Andres Messi", 100000, 10);
+		usuarioFinal.pegarFigurita(figurita);
+		usuarioFinal.pegarFigurita(figurita);
+		assertEquals(1, usuarioFinal.getFiguritasPegadas().size());
+	}
+	
+	
 	
 }
+
+
