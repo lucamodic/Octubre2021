@@ -2,12 +2,12 @@ package unlam.edu.ar.pb2;
 
 public class Figurita {
 
-	String codigo;
-	String grupo;
-	String seleccion;
-	String nombre;
-	Integer valor;
-	Integer numero;
+	private String codigo;
+	private String grupo;
+	private String seleccion;
+	private String nombre;
+	private Integer valor;
+	private Integer numero;
 	
 	public Figurita(String grupo, String seleccion, String nombre, Integer valor, Integer numero) {
 		this.grupo = grupo;

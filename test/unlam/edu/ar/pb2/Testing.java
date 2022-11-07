@@ -32,5 +32,12 @@ public class Testing {
 		assertEquals(1, administrador.getFiguritasAgregadas().size());
 	}
 	
+	@Test 
+	public void queUnUsuarioFinalPuedaAgregarUnaFigurita() {
+		Usuario usuarioFinal = new UsuarioFinal();
+		Figurita figurita = new Figurita("C", "Argentina", "Lionel Andres Messi", 100000, 10);
+		usuarioFinal.agregarFigurita(figurita);
+		assertEquals(1, usuarioFinal.getFiguritasAgregadas().size());
+	}
 	
 }
