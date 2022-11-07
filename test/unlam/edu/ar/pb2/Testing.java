@@ -90,23 +90,41 @@ public class Testing {
 	}
 	
 	@Test
-	public void queUnUsuarioFinalPuedaPegarUnaFigurita() {
+	public void queUnUsuarioFinalPuedaPegarUnaFigurita() throws NoTieneLaFigurita, FiguritaRepetida {
 		UsuarioFinal usuarioFinal = new UsuarioFinal();
 		Figurita figurita = new Figurita("C", "Argentina", "Lionel Andres Messi", 100000, 10);
+		usuarioFinal.agregarFigurita(figurita);
 		usuarioFinal.pegarFigurita(figurita);
 		assertEquals(1, usuarioFinal.getFiguritasPegadas().size());
+		assertEquals(0, usuarioFinal.getFiguritas().size());
 	}
 
-	@Test 
-	public void queUnUsuarioFinalNoPuedaPegarUnaFiguritaRepetida() {
+	@Test (expected = FiguritaRepetida.class)
+	public void queUnUsuarioFinalNoPuedaPegarUnaFiguritaRepetida() throws NoTieneLaFigurita, FiguritaRepetida {
 		UsuarioFinal usuarioFinal = new UsuarioFinal();
 		Figurita figurita = new Figurita("C", "Argentina", "Lionel Andres Messi", 100000, 10);
+		usuarioFinal.agregarFigurita(figurita);
+		usuarioFinal.agregarFigurita(figurita);
 		usuarioFinal.pegarFigurita(figurita);
 		usuarioFinal.pegarFigurita(figurita);
 		assertEquals(1, usuarioFinal.getFiguritasPegadas().size());
 	}
 	
-	
+	@Test
+	public void queSePuedaRealizarElIntercambioDeFiguritasEntreDosUsuariosFinales() throws NoTieneLaFigurita {
+		UsuarioFinal usuarioFinal = new UsuarioFinal();
+		Figurita figurita = new Figurita("C", "Argentina", "Lionel Andres Messi", 100000, 10);
+		usuarioFinal.agregarFigurita(figurita);
+		
+		UsuarioFinal usuarioFinal2 = new UsuarioFinal();
+		Figurita figurita2 = new Figurita("C", "Argentina", "El dibu", 100000, 1);
+		usuarioFinal2.agregarFigurita(figurita2);
+		
+		usuarioFinal.intercambio(figurita, usuarioFinal2, figurita2);
+		
+		assertEquals(figurita, usuarioFinal2.getFiguritas().get(0));
+		
+	}
 	
 }
 

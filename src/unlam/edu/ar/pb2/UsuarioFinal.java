@@ -29,8 +29,12 @@ public class UsuarioFinal extends Usuario {
 		this.figuritas = figuritas;
 	}
 
-	public void pegarFigurita(Figurita figurita) {
+	public void pegarFigurita(Figurita figurita) throws NoTieneLaFigurita, FiguritaRepetida {
+		this.buscarFigu(figurita);
+		this.buscarFiguEnPegadas(figurita);
 		this.figuritasPegadas.add(figurita);
+		this.figuritas.remove(figurita);
+		
 	}
 
 	public TreeSet<Figurita> getFiguritasPegadas() {
@@ -41,6 +45,44 @@ public class UsuarioFinal extends Usuario {
 		this.figuritasPegadas = figuritasPegadas;
 	}
 
+	public Boolean buscarFigu(Figurita figurita) throws NoTieneLaFigurita {
+		for(Figurita figurita1 : this.figuritas){
+			if(figurita1.equals(figurita)){
+				return true;
+			}
+		}
+		throw new NoTieneLaFigurita("No tiene la figurita");
+	}
+	
+	public Boolean buscarFiguEnPegadas(Figurita figurita)throws FiguritaRepetida {
+		for(Figurita figurita1 : this.figuritasPegadas){
+			if(figurita1.equals(figurita)){
+				throw new FiguritaRepetida("Figurita Repetida");
+			}
+		}
+		return true;
+	}
+	
+	public Boolean buscarFiguParaIntercambio(Figurita figurita) throws FiguritaNoDisponible {
+		for(Figurita figurita1 : this.figuritas){
+			if(figurita1.equals(figurita)){
+				return true;
+			}
+		}
+		throw new FiguritaNoDisponible("Figurita no disponible");
+	}
+
+	public void intercambio(Figurita figurita, UsuarioFinal usuarioFinal2, Figurita figurita2) throws NoTieneLaFigurita {
+		this.buscarFigu(figurita);
+		usuarioFinal2.buscarFigu(figurita2);
+		
+		this.figuritas.remove(figurita);
+		usuarioFinal2.figuritas.remove(figurita2);
+		
+		this.figuritas.add(figurita2);
+		usuarioFinal2.figuritas.add(figurita);
+	}
+	
 	
 	
 
