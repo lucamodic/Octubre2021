@@ -7,8 +7,9 @@ import org.junit.Test;
 public class Testing {
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void queSePuedaCrearUnaFigurita() {
+		Figurita figurita = new Figurita("AR10", "C", "Argentina", "Lionel Andres Messi", 100000);
+		assertNotNull(figurita);
 	}
 
 }
