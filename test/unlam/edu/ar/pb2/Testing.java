@@ -18,4 +18,12 @@ public class Testing {
 		assertNotNull(administrador);
 	}
 	
+	@Test
+	public void queSePuedaCrearUnUsuarioFinal() {
+		Usuario usuarioFinal = new UsuarioFinal();
+		assertNotNull(usuarioFinal);
+
+	}
+	
+	
 }
